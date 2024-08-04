@@ -1,0 +1,7 @@
+package signin
+
+templ Success(username string) {
+	<p>Your account has been successfully created, welcome { username } !</p>
+	<p>Wait 5 seconds to be redirected to the login page or click</p>
+	<button hx-post="/auth/signin/success">this button</button>
+}

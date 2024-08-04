@@ -1,0 +1,23 @@
+package lib
+
+templ Head(title string, styles, scripts []string, icon *string) {
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+		<title>{ title }</title>
+		if icon != nil {
+			<link rel="icon" href={ *icon } type="image/x-icon"/>
+		}
+		if styles != nil {
+			for _, file := range styles {
+				<link rel="stylesheet" href={ file }/>
+			}
+		}
+		if scripts != nil {
+			for _, file := range scripts {
+				<script src={ file }></script>
+			}
+		}
+	</head>
+}

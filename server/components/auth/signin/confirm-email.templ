@@ -1,0 +1,13 @@
+package signin
+
+templ ConfirmEmail(invalidOtp bool) {
+	<form hx-post="/auth/signin/confirm-email">
+		<label for="otp">
+			Please confirm your email by entering the 6 digits code we just sent to you
+		</label>
+		<input id="otp" name="otp" type="number" placeholder="000000"/>
+		if invalidOtp {
+			<p style="color: red;">Invalid code, please try again</p>
+		}
+	</form>
+}

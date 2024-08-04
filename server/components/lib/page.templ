@@ -1,0 +1,9 @@
+package lib
+
+templ Page(title string, root templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en">
+		@Head(title, nil, []string{"https://unpkg.com/htmx.org@2.0.0"}, nil)
+		@Body(root, nil)
+	</html>
+}

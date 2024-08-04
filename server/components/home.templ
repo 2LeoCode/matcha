@@ -1,0 +1,7 @@
+package components
+
+import "matcha/contexts"
+
+templ Home() {
+	<h1>Welcome, { contexts.GetSessionUser(ctx).Name } !</h1>
+}

@@ -1,0 +1,56 @@
+services:
+  server:
+    build: ./server
+    depends_on:
+      - database
+    working_dir: /usr/src
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    environment:
+      SERVER_PORT: ${SERVER_PORT}
+      SERVER_JWT_SECRET: ${SERVER_JWT_SECRET}
+      PGUSER: ${PGUSER}
+      PGPASSWORD: ${PGPASSWORD}
+      PGDATABASE: ${PGDATABASE}
+      PGHOST: ${PGHOST}
+      PGPORT: ${PGPORT}
+      BUILD_TYPE: ${BUILD_TYPE}
+    networks:
+      - common
+
+  database:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - database:/var/lib/postgresql/data
+    ports:
+      - ${PGPORT}:${PGPORT}
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
+      PGPORT: ${PGPORT}
+    networks:
+      - common
+
+  database-admin:
+    image: dpage/pgadmin4:latest
+    depends_on:
+      - database
+    restart: always
+    ports:
+      - ${PGADMIN_LISTEN_PORT}:${PGADMIN_LISTEN_PORT}
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: ${PGADMIN_LISTEN_PORT}
+    networks:
+      - common
+
+volumes:
+  database:
+
+networks:
+  common:
+    driver: bridge
+

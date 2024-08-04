@@ -1,0 +1,29 @@
+package auth
+
+templ Signin(invalidEmail, invalidUsername, invalidPassword, passwordsDontMatch bool) {
+	<form hx-post="/auth/signin">
+		if invalidEmail || invalidUsername || invalidPassword {
+			<p style="color: red;">Invalid input, please try again</p>
+		}
+		<label for="email">Email</label>
+		<input id="email" name="email" type="email" placeholder="kevindu72@example.com"/>
+		if invalidEmail {
+			<p style="color: red;">Invalid email</p>
+		}
+		<label for="username">Username</label>
+		<input id="username" name="username" type="text" placeholder="xXkevin_du_72Xx"/>
+		if invalidUsername {
+			<p style="color: red;">Invalid username</p>
+		}
+		<label for="password">Password</label>
+		<input id="password" name="password" type="password" placeholder="SuPerPaSSwOrd998!"/>
+		if invalidPassword {
+			<p style="color: red;">Invalid password</p>
+		}
+		<label for="confirm-password">Password</label>
+		<input id="confirm-password" name="confirm-password" type="password" placeholder="SuPerPaSSwOrd998!"/>
+		if passwordsDontMatch {
+			<p style="color: red;">Passwords don't match</p>
+		}
+	</form>
+}

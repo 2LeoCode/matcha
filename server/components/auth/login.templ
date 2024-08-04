@@ -1,0 +1,14 @@
+package auth
+
+templ Login(failedToLogin bool) {
+	<form hx-post="/auth/login">
+		<label for="username">Username</label>
+		<input id="username" name="username" type="text" placeholder="xXkevin_du_72Xx"/>
+		<label for="password">Password</label>
+		<input id="password" name="password" type="password" placeholder="SuPerPaSSwOrd998!"/>
+		<button type="submit">Log-in</button>
+		if failedToLogin {
+			<p style="color: red;">Invalid username or password, please try again</p>
+		}
+	</form>
+}

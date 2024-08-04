@@ -1,0 +1,14 @@
+package lib
+
+templ Body(root templ.Component, scripts []string) {
+	<body>
+		<main>
+			@root
+		</main>
+		if scripts != nil {
+			for _, file := range scripts {
+				<script src={ file }></script>
+			}
+		}
+	</body>
+}
